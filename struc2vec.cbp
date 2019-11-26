@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="struc2vec" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/struc2vec" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/struc2vec" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="include/BinaryDistance.h" />
+		<Unit filename="include/ColMajorCell.h" />
+		<Unit filename="include/CostMatrix.h" />
+		<Unit filename="include/DTW.h" />
+		<Unit filename="include/Dist.h" />
+		<Unit filename="include/EuclideanDistance.h" />
+		<Unit filename="include/ExpandedResWindow.h" />
+		<Unit filename="include/FDAssert.h" />
+		<Unit filename="include/FDMath.h" />
+		<Unit filename="include/FastDTW.h" />
+		<Unit filename="include/Foundation.h" />
+		<Unit filename="include/FullWindow.h" />
+		<Unit filename="include/JavaTypes.h" />
+		<Unit filename="include/LinearWindow.h" />
+		<Unit filename="include/ManhattanDistance.h" />
+		<Unit filename="include/MemoryResidentMatrix.h" />
+		<Unit filename="include/PAA.h" />
+		<Unit filename="include/PartialWindowMatrix.h" />
+		<Unit filename="include/SearchWindow.h" />
+		<Unit filename="include/TimeSeries.h" />
+		<Unit filename="include/TimeSeriesPoint.h" />
+		<Unit filename="include/TimeWarpInfo.h" />
+		<Unit filename="include/WarpPath.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/ColMajorCell.cpp" />
+		<Unit filename="src/FastDTW.cpp" />
+		<Unit filename="src/SearchWindow.cpp" />
+		<Unit filename="src/WarpPath.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

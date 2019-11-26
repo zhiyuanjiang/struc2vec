@@ -1,0 +1,146 @@
+# depslib dependency file v1.0
+1574671015 source:f:\c++-project\struc2vec\main.cpp
+	<iostream>
+	<thread>
+	<queue>
+	<vector>
+	<cstdlib>
+	<cstring>
+	<algorithm>
+	<fstream>
+	<string>
+	<sstream>
+	"FastDTW.h"
+	"Dist.h"
+
+1558052874 source:f:\c++-project\struc2vec\src\colmajorcell.cpp
+	"ColMajorCell.h"
+
+1558052874 source:f:\c++-project\struc2vec\src\fastdtw.cpp
+	"FastDTW.h"
+
+1558052874 source:f:\c++-project\struc2vec\src\searchwindow.cpp
+	"SearchWindow.h"
+	"FDAssert.h"
+	"FDMath.h"
+
+1558052874 source:f:\c++-project\struc2vec\src\warppath.cpp
+	"WarpPath.h"
+	<algorithm>
+	"FDAssert.h"
+
+1558052874 f:\c++-project\struc2vec\include\colmajorcell.h
+	"Foundation.h"
+
+1558052874 f:\c++-project\struc2vec\include\foundation.h
+	"JavaTypes.h"
+
+1558052874 f:\c++-project\struc2vec\include\javatypes.h
+
+1574670995 f:\c++-project\struc2vec\include\fastdtw.h
+	"Foundation.h"
+	"DTW.h"
+	"PAA.h"
+	"ExpandedResWindow.h"
+
+1574299104 f:\c++-project\struc2vec\include\dtw.h
+	"Foundation.h"
+	"WarpPath.h"
+	"TimeSeries.h"
+	"ColMajorCell.h"
+	"FDMath.h"
+	"TimeWarpInfo.h"
+	"SearchWindow.h"
+	"PartialWindowMatrix.h"
+	"MemoryResidentMatrix.h"
+	<vector>
+	<limits>
+
+1558052874 f:\c++-project\struc2vec\include\warppath.h
+	"Foundation.h"
+	<vector>
+	"ColMajorCell.h"
+	<iostream>
+
+1574168990 f:\c++-project\struc2vec\include\timeseries.h
+	"Foundation.h"
+	<vector>
+	<string>
+	"TimeSeriesPoint.h"
+	"FDAssert.h"
+	<iostream>
+	<cstdio>
+	<sstream>
+
+1558052874 f:\c++-project\struc2vec\include\timeseriespoint.h
+	"Foundation.h"
+	"FDAssert.h"
+	<iostream>
+	<algorithm>
+	<vector>
+
+1558052874 f:\c++-project\struc2vec\include\fdassert.h
+	<cassert>
+	<stdio.h>
+
+1558052874 f:\c++-project\struc2vec\include\fdmath.h
+	"Foundation.h"
+	<algorithm>
+
+1558052874 f:\c++-project\struc2vec\include\timewarpinfo.h
+	"Foundation.h"
+	"WarpPath.h"
+
+1558052874 f:\c++-project\struc2vec\include\searchwindow.h
+	"Foundation.h"
+	<vector>
+	<algorithm>
+	"ColMajorCell.h"
+
+1558052874 f:\c++-project\struc2vec\include\partialwindowmatrix.h
+	"Foundation.h"
+	<vector>
+	<limits>
+	"CostMatrix.h"
+	"SearchWindow.h"
+	"FDAssert.h"
+
+1558052874 f:\c++-project\struc2vec\include\costmatrix.h
+	"Foundation.h"
+
+1558052874 f:\c++-project\struc2vec\include\memoryresidentmatrix.h
+	"CostMatrix.h"
+	"SearchWindow.h"
+	"FDAssert.h"
+	<vector>
+	<limits>
+
+1558052874 f:\c++-project\struc2vec\include\paa.h
+	"Foundation.h"
+	<vector>
+	"TimeSeries.h"
+	"FDAssert.h"
+	<cmath>
+
+1558052874 f:\c++-project\struc2vec\include\expandedreswindow.h
+	"Foundation.h"
+	"TimeSeries.h"
+	"SearchWindow.h"
+	"PAA.h"
+	"WarpPath.h"
+	<limits>
+
+1574164898 source:f:\c++-project\struc2vec\src\dist.cpp
+	"Dist.h"
+
+1574340123 f:\c++-project\struc2vec\include\dist.h
+	<algorithm>
+	<vector>
+	"EuclideanDistance.h"
+
+1558052874 f:\c++-project\struc2vec\include\euclideandistance.h
+	"FDAssert.h"
+	"FDMath.h"
+	<cmath>
+	"TimeSeriesPoint.h"
+
