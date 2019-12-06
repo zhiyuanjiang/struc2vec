@@ -10,12 +10,13 @@
 #include <sstream>
 #include "FastDTW.h"
 #include "Dist.h"
+#include "EuclideanDistance.h"
 
 using namespace std;
 using namespace fastdtw;
 
 //节点个数
-const int N = 10000;
+const int N = 100000;
 //线程个数
 const int M = 4;
 //"邻居"个数
@@ -238,33 +239,61 @@ double dtw(vector<double>&a, vector<double>&b)
 double dist(Node& a, Node& b)
 {
     double exp = 0.5;
-    double mi = min(a.a[0], b.a[0])+0.5;
-    double ma = max(a.a[0], b.a[0])+0.5;
-    return ma/mi-1;
+    double mi = min(a.a[0], b.a[0])+exp;
+    double ma = max(a.a[0], b.a[0])+exp;
+    double val = (ma/mi-1)*max(a.a[1], b.a[1]);
+    return val;
+}
+
+double dtw(vector<Node>&a, vector<Node>&b)
+{
+    int r = a.size(), c = b.size();
+    double dp[r+1][c+1];
+    memset(dp, 0, sizeof(dp));
+    for(int i = 1; i <= r; ++i){
+        for(int j = 1; j <= c; ++j){
+            dp[i][j] = dist(a[i-1], b[j-1]);
+            //dp[i][j] = min(min(dp[i-1][j-1]+2*dp[i][j],dp[i-1][j]+dp[i][j]),min(dp[i-1][j]+dp[i][j],dp[i][j-1]+dp[i][j]));
+            dp[i][j] = min(dp[i-1][j-1],min(dp[i-1][j],dp[i][j-1]))+dp[i][j];
+        }
+    }
+    return dp[r][c];
 }
 
 double myfastdtw(vector<Node>&a, vector<Node>&b)
 {
-    //double *p1 = &a[0], *p2 = &b[0];
-    TimeSeries<double,2> tsI;
-    for(int i = 0; i < a.size(); ++i) {
-        tsI.addLast(i, TimeSeriesPoint<double,2>(a[i].a));
-    }
-
-    TimeSeries<double,2> tsJ;
-    for(int i = 0; i < b.size(); ++i)
-    {
-        tsJ.addLast(i, TimeSeriesPoint<double,2>(b[i].a));
-    }
+//    TimeSeries<double,2> tsI;
+//    for(int i = 0; i < a.size(); ++i) {
+//        tsI.addLast(i, TimeSeriesPoint<double,2>(a[i].a));
+//    }
+//
+//    TimeSeries<double,2> tsJ;
+//    for(int i = 0; i < b.size(); ++i)
+//    {
+//        tsJ.addLast(i, TimeSeriesPoint<double,2>(b[i].a));
+//    }
+//
+//    double ans = 0;
+//    if(a.size() == 1 && b.size() == 1) ans = dist(a[0], b[0]);
+//    else if(a.size() < 100 || b.size() < 100) ans = STRI::getWarpDistBetween(tsI, tsJ, Dist());
+//    else ans = FAST::getWarpDistBetween(tsI, tsJ, JInt(1), Dist());
 
     double ans = 0;
-    if(a.size() == 1 && b.size() == 1) ans = dist(a[0], b[0]);
-    else if(a.size() < 100 || b.size() < 100) ans = STRI::getWarpDistBetween(tsI, tsJ, Dist());
-    else ans = FAST::getWarpDistBetween(tsI, tsJ, JInt(1), Dist());
+    if(a.size() < 50 || b.size() < 50) ans = dtw(a, b);
+    else{
+        TimeSeries<double,2> tsI;
+        for(int i = 0; i < a.size(); ++i) {
+            tsI.addLast(i, TimeSeriesPoint<double,2>(a[i].a));
+        }
 
+        TimeSeries<double,2> tsJ;
+        for(int i = 0; i < b.size(); ++i)
+        {
+            tsJ.addLast(i, TimeSeriesPoint<double,2>(b[i].a));
+        }
+        ans = FAST::getWarpDistBetween(tsI, tsJ, JInt(1), Dist());
+    }
     return ans;
-    //return STRI::getWarpDistBetween(tsI, tsJ, Dist());
-    //return FAST::getWarpDistBetween(tsI, tsJ, JInt(1), Dist());
 }
 
 //O(nlogn*l)
@@ -275,19 +304,7 @@ void buildGraph(int s, int e, int pos, int index)
         for(auto j : neighbors[i]){
             if(i == j || simi_graph[i].size() < pos || simi_graph[j].size() < pos) continue;
 
-//            a.clear(); b.clear();
-//            for(auto it : simi_graph[i][pos]) a.push_back(it);
-//            for(auto it : simi_graph[j][pos]) b.push_back(it);
-
             double val = myfastdtw(simi_graph[i][pos], simi_graph[j][pos]);
-
-//            cout << i << " " << j << " " << a.size() << " " << b.size() << endl;
-//            for(auto it : a) cout << it.a[0] << " " << it.a[1] << endl;
-//            cout << endl;
-//            for(auto it : b) cout << it.a[0] << " " << it.a[1] << endl;;
-//            cout << endl;
-//            cout << val << endl;
-//            return;
 
             edge[index].push_back(Edge(i, j, val));
         }
@@ -299,7 +316,7 @@ void buildGraph(int s, int e, int pos, int index)
 
 int main()
 {
-    string graph_file = "f://test2.txt";
+    string graph_file = "f://test3.txt";
     string output = "f://";
 
     cout << "test" << endl;
@@ -320,7 +337,10 @@ int main()
 
     cout << "deal data:" << (e-s) << endl;
 
-    //buildGraph(0, N-1, 2, 0);
+//    int ans = 0;
+//    for(int i = 0; i < N; ++i)
+//        cout << simi_graph[i][0][0].a[1] << endl;
+    //buildGraph(0, N-1, 0, 0);
     //return 0;
 
     for(int x = 0; x < 3; ++x){
@@ -367,9 +387,9 @@ int main()
 
     /*
     100 5 24 70 0
-    1000 5 80 600 5
-    10000 5 100 2500 40
-    100000 5 100 2500 530
+    1000 5 80 600 3
+    10000 5 100 2500 77
+    100000 5 100 2500 1200
     */
 
     return 0;

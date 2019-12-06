@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1574671015 source:f:\c++-project\struc2vec\main.cpp
+1575622695 source:f:\c++-project\struc2vec\main.cpp
 	<iostream>
 	<thread>
 	<queue>
@@ -12,6 +12,7 @@
 	<sstream>
 	"FastDTW.h"
 	"Dist.h"
+	"EuclideanDistance.h"
 
 1558052874 source:f:\c++-project\struc2vec\src\colmajorcell.cpp
 	"ColMajorCell.h"
